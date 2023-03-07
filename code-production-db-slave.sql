@@ -14,6 +14,7 @@ SELECT pglogical.replication_set_add_all_tables(
 'public', 
 ARRAY['public','code'] 
 );
+SELECT pglogical.replication_set_remove_table('public', 'schema_migrations');
 
 SELECT pglogical.replication_set_add_all_sequences(
 'public', 
