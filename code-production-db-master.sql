@@ -29,3 +29,7 @@ provider_dsn :=  'host=172.16.1.68 port=5432 dbname=code_production user=postgre
 replication_sets := '{public}',
 synchronize_data := TRUE
 );
+
+
+SELECT pglogical.replication_set_add_table('public', 'schema_migrations');
+

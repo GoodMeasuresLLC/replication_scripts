@@ -27,4 +27,7 @@ provider_dsn :=  'host=172.16.7.93 port=5432 dbname=code_staging user=postgres',
 replication_sets := '{public}',
 synchronize_data := TRUE);
 
+CREATE SUBSCRIPTION public
+  CONNECTION 'host=172.16.7.93 port=5432 dbname=code_staging' PUBLICATION public
+  WITH(copy_data=FALSE);
 

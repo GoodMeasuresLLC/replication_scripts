@@ -22,6 +22,8 @@ ARRAY['public','code'],
 true
 );
 
+select pglogical.drop_subscription('public');
+
 SELECT pglogical.create_subscription(
   subscription_name := 'public',
 provider_dsn :=  'host=172.16.7.245 port=5432 dbname=code_staging user=postgres',
