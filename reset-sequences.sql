@@ -7,8 +7,8 @@ BEGIN
      SELECT
         'SELECT SETVAL(' ||
            quote_literal(quote_ident(sequence_namespace.nspname) || '.' || quote_ident(class_sequence.relname)) ||
-           ', COALESCE(MAX(' ||quote_ident(pg_attribute.attname)|| '), 1) ) FROM ' ||
-           quote_ident(table_namespace.nspname)|| '.'||quote_ident(class_table.relname)|| ';'
+           ', (SELECT COALESCE(MAX(' ||quote_ident(pg_attribute.attname)|| ') + 1, 1) FROM ' ||
+           quote_ident(table_namespace.nspname)|| '.'||quote_ident(class_table.relname)|| '), FALSE );'
     FROM pg_depend
         INNER JOIN pg_class AS class_sequence
             ON class_sequence.oid = pg_depend.objid
