@@ -9,4 +9,5 @@ create schema master_db_schema;
 IMPORT FOREIGN SCHEMA schema
 FROM SERVER master_db INTO master_db_schema;
 -- execute every time.
-insert into schema.schema_migrations(version) select version from master_db_schema.schema_migrations;
+insert into schema.schema_migrations(version) select version from master_db_schema.schema_migrations
+  where version not in (select schema.schema_migrations.version from schema.schema_migrations);
